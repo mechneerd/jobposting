@@ -6,7 +6,7 @@
 
 @foreach($listings as $list)
 <a href="/list/{{$list['id']}}">{{$list['title']}}</a> 
-    <p>{{$list['desc']}}</p>
+    <p>{{$list['description']}}</p>
 @endforeach
 
 @else
