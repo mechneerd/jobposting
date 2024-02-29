@@ -22,10 +22,16 @@ Route::get('/', function () {
 });
 
 Route::get('/list/{id}', function ($id) {
-    return view('listing',[
-        'heading'=>'latest list',
-        'listings'=>Listing::find($id)
-    ]);
+    $listing =Listing::find($id);
+    if($listing){
+        return view('listing',[
+            'heading'=>'latest list',
+            'listings'=>$listing,
+        ]);
+    }else{
+        abort('404');
+    }
+  
 });
 
 Route::get('/hello',function(){
