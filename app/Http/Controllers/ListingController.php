@@ -1,17 +1,29 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use app\Models\Listing;
 use Illuminate\Http\Request;
 
 class ListingController extends Controller
 {
-    //
+    //show all listing
     public function index(){
+        $to = Listing::all();
+        dd($to);
+       
+        return view('listings.index',[
+           
+            'listings'=>Listing::all(),
+        ]);
 
     }
-
-    public function show(){
+//show single listng
+    public function show(Listing $listing){
+     
+        return view('listings.show',[
+           
+            'listings'=>$listing,
+        ]);
         
     }
 }
