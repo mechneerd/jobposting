@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use app\Models\Listing;
+use App\Models\Listing;
 use Illuminate\Http\Request;
 
 class ListingController extends Controller
@@ -9,7 +9,7 @@ class ListingController extends Controller
     //show all listing
     public function index(){
         $to = Listing::all();
-        dd($to);
+       // dd($to);
        
         return view('listings.index',[
            
