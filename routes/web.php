@@ -14,6 +14,9 @@ use App\Models\Listing;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/list/create',[ListingController::class,'create']);
+
+Route::post('/list',[ListingController::class,'store']);
 
 Route::get('/',[ListingController::class,'index']);
 
@@ -27,6 +30,9 @@ Route::get('/list/{listing}', function (Listing $listing) {
 
   
 });
+
+
+
 
 Route::get('/hello',function(){
     return response('<h1>hello</h1>',200)
