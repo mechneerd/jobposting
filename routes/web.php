@@ -31,7 +31,9 @@ Route::get('/list/{listing}', function (Listing $listing) {
   
 });
 
+Route::get('/list/{listing}/edit', [ListingController::class,'edit']
 
+);
 
 
 Route::get('/hello',function(){

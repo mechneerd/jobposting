@@ -11,7 +11,7 @@ class ListingController extends Controller
 
         return view('listings.index',[
            
-            'listings'=>Listing::latest()->filter(request(['tag','search']))->get(),
+            'listings'=>Listing::latest()->filter(request(['tag','search']))->paginate(2),
         ]);
 
     }
@@ -29,7 +29,7 @@ class ListingController extends Controller
     }
 
     public function store(Request $request){
-        //dd($request->all());
+        //dd($request->file('logo'));
         $formfields = $request->validate([
             'title' => 'required',
             'company' => ['required',Rule::unique('listings','company')],
@@ -39,6 +39,10 @@ class ListingController extends Controller
             'description'=>'required'
 
         ]);
+        if($request->hasFile('logo')){
+            $formfields['logo'] = $request->file('logo')->store('logos','public');
+           // dd($formfields['logo']);
+        }
 
         Listing::create($formfields);
         
