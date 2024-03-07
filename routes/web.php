@@ -21,7 +21,7 @@ Route::post('/list',[ListingController::class,'store']);
 Route::get('/',[ListingController::class,'index']);
 
 Route::get('/list/{listing}', function (Listing $listing) {
-   
+
     
         return view('listing',[
            
@@ -34,8 +34,12 @@ Route::get('/list/{listing}', function (Listing $listing) {
 Route::get('/list/{listing}/edit', [ListingController::class,'edit']
 
 );
+Route::put('/update/{listing}', [ListingController::class,'update']
 
+);
+Route::get('/delete/{listing}', [ListingController::class,'delete']
 
+);
 Route::get('/hello',function(){
     return response('<h1>hello</h1>',200)
     ->header('content-type','text/plain')
