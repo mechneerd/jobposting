@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\ListingController;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 use App\Models\Listing;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ListingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,6 +39,16 @@ Route::put('/update/{listing}', [ListingController::class,'update']
 
 );
 Route::get('/delete/{listing}', [ListingController::class,'delete']
+
+);
+
+Route::get('/register', [UserController::class,'create']
+
+);
+
+
+//create new user
+Route::post('/users', [UserController::class,'store']
 
 );
 Route::get('/hello',function(){
