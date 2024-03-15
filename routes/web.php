@@ -15,7 +15,12 @@ use App\Http\Controllers\ListingController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/list/create',[ListingController::class,'create']);
+
+//logout user 
+Route::get('/logoutuser',[UserController::class,'logout'])->middleware('auth');
+
+
+Route::get('/list/create',[ListingController::class,'create'])->middleware('auth');
 
 Route::post('/list',[ListingController::class,'store']);
 
@@ -34,28 +39,27 @@ Route::get('/list/{listing}', function (Listing $listing) {
 
 Route::get('/list/{listing}/edit', [ListingController::class,'edit']
 
-);
+)->middleware('auth');
 Route::put('/update/{listing}', [ListingController::class,'update']
 
-);
+)->middleware('auth');
 Route::get('/delete/{listing}', [ListingController::class,'delete']
 
-);
+)->middleware('auth');
 
 Route::get('/register', [UserController::class,'create']
 
-);
+)->middleware('guest');
 
 
 //create new user
-Route::post('/users', [UserController::class,'store']
+Route::post('/users', [UserController::class,'store']);
 
-);
-Route::get('/hello',function(){
-    return response('<h1>hello</h1>',200)
-    ->header('content-type','text/plain')
-    ->header('food','apple');
-});
+//login view
+Route::get('/login',[UserController::class,'login'])->name('login')->middleware('guest');
+
+//login user
+Route::post('/users/authenticate',[UserController::class,'authenticate']);
 
 Route::get('/posts/{id}',function($id){
     return response('post'.$id);
