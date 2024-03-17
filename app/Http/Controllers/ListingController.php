@@ -44,6 +44,8 @@ class ListingController extends Controller
            // dd($formfields['logo']);
         }
 
+        $formfields['user_id'] = auth()->id();
+
         Listing::create($formfields);
         
         return redirect('/')->with('message','posting created successfully');
@@ -86,5 +88,7 @@ class ListingController extends Controller
 
     }
 
-
+    public function manage(){
+        return view('listings.manage',['listings'=>auth()->user()->listings()->get()]);
+    }
 }

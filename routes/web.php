@@ -19,6 +19,9 @@ use App\Http\Controllers\ListingController;
 //logout user 
 Route::get('/logoutuser',[UserController::class,'logout'])->middleware('auth');
 
+//managerlisting
+
+Route::get('/listing/manage',[ListingController::class,'manage'])->middleware('auth');
 
 Route::get('/list/create',[ListingController::class,'create'])->middleware('auth');
 
@@ -60,6 +63,9 @@ Route::get('/login',[UserController::class,'login'])->name('login')->middleware(
 
 //login user
 Route::post('/users/authenticate',[UserController::class,'authenticate']);
+
+
+
 
 Route::get('/posts/{id}',function($id){
     return response('post'.$id);
